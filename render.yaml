@@ -2,8 +2,8 @@ services:
   - type: web
     name: backend
     env: node
-    buildCommand: cd apps/be-challenge-test && npm install && npm run build
-    startCommand: cd apps/be-challenge-test && npm run start:prod
+    buildCommand: cd apps/be-challenge-test && yarn install && yarn run build
+    startCommand: cd apps/be-challenge-test && yarn run start:prod
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,7 +15,7 @@ services:
   - type: web
     name: frontend
     env: static
-    buildCommand: cd apps/fe-challenge-test && npm install && npm run build
+    buildCommand: cd apps/fe-challenge-test && yarn install && yarn run build
     staticPublishPath: ./apps/fe-challenge-test/dist/fe-challenge-test
     routes:
       - type: rewrite
@@ -28,4 +28,4 @@ services:
       - key: NODE_ENV
         value: production
       - key: ROOT_API_URL
-        sync: false
+        value: https://${RENDER_EXTERNAL_HOSTNAME}-backend.onrender.com
