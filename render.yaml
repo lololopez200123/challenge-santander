@@ -12,15 +12,14 @@ services:
       - key: DB_NAME
         sync: false
 
-  - type: web
+  - type: static
     name: frontend
-    env: node
     buildCommand: |
       cd apps/fe-challenge-test
       yarn install
       yarn global add @angular/cli 
       ng build --configuration production
-    startCommand: cd apps/fe-challenge-test && npx serve -s dist/fe-challenge-test
+    publishDir: apps/fe-challenge-test/dist/fe-challenge-test
     envVars:
       - key: NODE_ENV
         value: production
