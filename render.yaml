@@ -3,7 +3,7 @@ services:
     name: backend
     env: node
     buildCommand: cd apps/be-challenge-test && yarn install && yarn add @nestjs/cli && yarn run build
-    startCommand: cd apps/be-challenge-test && yarn global add @angular/cli && yarn run start:prod
+    startCommand: cd apps/be-challenge-test && yarn run start:prod
     envVars:
       - key: NODE_ENV
         value: production
@@ -15,17 +15,13 @@ services:
   - type: web
     name: frontend
     env: node
-    buildCommand: cd apps/fe-challenge-test && yarn install && export PATH="$PATH:$(pwd)/node_modules/.bin" && ng version && ng build --configuration production
-    staticPublishPath: ./apps/fe-challenge-test/dist/fe-challenge-test
-    routes:
-      - type: rewrite
-        source: /api
-        destination: https://${RENDER_EXTERNAL_HOSTNAME}-backend.onrender.com/api
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    buildCommand: |
+      cd apps/fe-challenge-test
+      yarn install
+      yarn global add @angular/cli 
+      ng build --configuration production
     envVars:
       - key: NODE_ENV
         value: production
-      - key: REACT_APP_API_URL
+      - key: ROOT_API_URL
         value: https://${RENDER_EXTERNAL_HOSTNAME}-backend.onrender.com
