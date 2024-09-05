@@ -14,9 +14,9 @@ services:
 
   - type: web
     name: frontend
-    env: static
-    buildCommand: cd apps/fe-challenge-test && yarn install && ng build --configuration production
-    staticPublishPath: ./apps/fe-challenge-test/dist/fe-challenge-test
+    env: node
+    buildCommand: cd apps/fe-challenge-test && yarn install && yarn run build
+    startCommand: cd apps/fe-challenge-test && yarn run serve:ssr:fe-challenge-test
     envVars:
       - key: NODE_ENV
         value: production
