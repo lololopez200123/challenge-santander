@@ -2,7 +2,7 @@ services:
   - type: web
     name: backend
     env: node
-    buildCommand: cd apps/be-challenge-test && yarn install && yarn run build
+    buildCommand: cd apps/be-challenge-test && yarn install && yarn add @nestjs/cli && yarn run build
     startCommand: cd apps/be-challenge-test && yarn run start:prod
     envVars:
       - key: NODE_ENV
