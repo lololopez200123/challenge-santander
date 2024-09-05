@@ -14,8 +14,13 @@ services:
 
   - type: web
     name: frontend
-    env: static
-    buildCommand: cd apps/fe-challenge-test && yarn install && yarn run build
+    env: node
+    buildCommand: |
+      cd apps/fe-challenge-test
+      yarn install
+      yarn add @angular/cli
+      export PATH="$PATH:$(pwd)/node_modules/.bin"
+      ng build --configuration production
     staticPublishPath: ./apps/fe-challenge-test/dist/fe-challenge-test
     routes:
       - type: rewrite
@@ -27,5 +32,5 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: ROOT_API_URL
+      - key: REACT_APP_API_URL
         value: https://${RENDER_EXTERNAL_HOSTNAME}-backend.onrender.com
