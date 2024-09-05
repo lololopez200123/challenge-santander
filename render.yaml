@@ -7,6 +7,10 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: DB_CONNECTION_URI
+        sync: true
+      - key: DB_NAME
+      - sync: true
 
   - type: web
     name: frontend
@@ -20,3 +24,8 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ROOT_API_URL
+        sync: true
