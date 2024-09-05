@@ -1,0 +1,77 @@
+.candidate-table {
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 0.3rem;
+  max-width: 87.5rem;
+  margin-inline: auto;
+  max-height: 80dvh;
+  overflow: auto;
+
+  &__table {
+    width: 100%;
+    background-color: transparent;
+    box-shadow: unset;
+    color: #606060;
+    font-size: 1.125em;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__header-cell {
+    color: #606060;
+    font-size: 1.125em;
+    font-family: "SantanderHeadlineBold", "sans-serif";
+    font-weight: bold;
+    text-align: center;
+    max-width: 18vw;
+    @media (max-width: 900px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__cell {
+    color: #606060;
+    font-size: 18px;
+    font-family: "SantanderHeadlineRegular", "sans-serif";
+    text-align: center;
+    max-width: 18vw;
+    @media (max-width: 900px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  // Modern scrollbar styles
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #e7e7e7;
+    border-radius: 0.3125rem;
+
+    &:hover {
+      background: var(--color-primary);
+    }
+  }
+}
+
+.candidate-table__empty-message {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #c2c2c2;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,51 @@
+@if (candidates$ | async; as candidates) {
+    @if (candidates.length > 0) {
+        <div class="candidate-table">
+            <table mat-table [dataSource]="candidates" class="candidate-table__table">
+                @for (column of ['name', 'surname', 'seniority', 'experience', 'availability']; track column) {
+                    @switch (column) {
+                        @case ('name') {
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef class="candidate-table__header-cell"> Name </th>
+                                <td mat-cell *matCellDef="let candidate" class="candidate-table__cell"> {{candidate.name}} </td>
+                            </ng-container>
+                        }
+                        @case ('surname') {
+                            <ng-container matColumnDef="surname">
+                                <th mat-header-cell *matHeaderCellDef class="candidate-table__header-cell"> Surname </th>
+                                <td mat-cell *matCellDef="let candidate" class="candidate-table__cell"> {{candidate.surname}} </td>
+                            </ng-container>
+                        }
+                        @case ('seniority') {
+                            <ng-container matColumnDef="seniority">
+                                <th mat-header-cell *matHeaderCellDef class="candidate-table__header-cell"> Seniority </th>
+                                <td mat-cell *matCellDef="let candidate" class="candidate-table__cell"> {{candidate.seniority}} </td>
+                            </ng-container>
+                        }
+                        @case ('experience') {
+                            <ng-container matColumnDef="experience">
+                                <th mat-header-cell *matHeaderCellDef class="candidate-table__header-cell"> Years of Experience </th>
+                                <td mat-cell *matCellDef="let candidate" class="candidate-table__cell"> {{candidate.years}} </td>
+                            </ng-container>
+                        }
+                        @case ('availability') {
+                            <ng-container matColumnDef="availability">
+                                <th mat-header-cell *matHeaderCellDef class="candidate-table__header-cell"> Availability </th>
+                                <td mat-cell *matCellDef="let candidate" class="candidate-table__cell">
+                                    {{candidate.availability ? 'Yes' : 'No'}}
+                                </td>
+                            </ng-container>
+                        }
+                    }
+                }
+
+                <tr mat-header-row *matHeaderRowDef="['name', 'surname', 'seniority', 'experience', 'availability']" class="candidate-table__header-row"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['name', 'surname', 'seniority', 'experience', 'availability']" class="candidate-table__row"></tr>
+            </table>
+        </div>
+    } @else {
+        <div class="candidate-table__empty-message">
+            <p>You haven't uploaded any candidates yet.</p>
+        </div>
+    }
+}

@@ -1,0 +1,39 @@
+<div class="candidate-modal">
+    <h2 class="candidate-modal__title" mat-dialog-title>New Candidate</h2>
+    <form class="candidate-modal__form" [formGroup]="candidateForm" (ngSubmit)="onSave()">
+
+        <mat-form-field class="candidate-modal__field" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+            @if (nameErrorMessage()) {
+            <mat-error>{{nameErrorMessage()}}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="candidate-modal__field" appearance="outline">
+            <mat-label>Surname</mat-label>
+            <input matInput formControlName="surname" />
+            @if (surnameErrorMessage()) {
+            <mat-error>{{surnameErrorMessage()}}</mat-error>
+            }
+        </mat-form-field>
+
+        <div class="candidate-modal__file-upload">
+            <mat-label>Upload Excel File</mat-label>
+            <input class="candidate-modal__file-input" type="file" (change)="onFileChange($event)" />
+            @if (fileErrorMessage()) {
+            <mat-error>{{fileErrorMessage()}}</mat-error>
+            }
+        </div>
+
+        <button class="candidate-modal__cancel-btn" (click)="onClose()">
+            <img src="/assets/icons/cancel.svg" alt="Cancel" />
+        </button>
+        <button mat-raised-button class="candidate-modal__save-btn" color="primary" type="submit"
+            [disabled]="!formValid()">Save</button>
+    </form>
+    <span class="candidate-modal__help-text">
+        The file need to have the following columns: seniority, years of experience and
+        availability
+    </span>
+</div>

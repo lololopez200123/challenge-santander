@@ -1,0 +1,82 @@
+.candidate-modal {
+  padding: 2.5rem 0;
+  width: 80%;
+  margin-inline: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  font-family: "SantanderMicroText", "sans-serif";
+
+  &__title {
+    font-family: "SantanderHeadlineRegular", "sans-serif";
+  }
+
+  &__field {
+    background-color: white;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  &__cancel-btn {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    color: black;
+    border: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  &__save-btn {
+    --mdc-protected-button-container-color: var(--color-primary);
+    color: var(--color-white);
+    margin-top: auto;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__file-upload {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__file-input {
+    &::file-selector-button {
+      color: white;
+      border: none;
+      padding: 1em;
+      border-radius: 0.2em;
+      background-color: var(--color-primary);
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--color-accent);
+      }
+    }
+  }
+
+  &__help-text {
+    color: #757575;
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    display: block;
+    max-width: 45ch;
+  }
+}

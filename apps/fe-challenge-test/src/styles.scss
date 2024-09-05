@@ -1,0 +1,73 @@
+// Custom Theming for Angular Material
+// Importa Angular Material utilizando la nueva sintaxis de @use
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$primary-color: #e71313;
+$accent-color: #990030;
+$white-color: #ffffff;
+
+@mixin font-face($family, $path, $weight: 400, $style: normal) {
+  @font-face {
+    font-family: $family;
+    src: url(#{$path}.woff) format("woff");
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+@include font-face(
+  "SantanderHeadlineRegular",
+  "/assets/fonts/SantanderHeadline-Regular",
+  400
+);
+@include font-face(
+  "SantanderHeadlineBold",
+  "/assets/fonts/SantanderHeadline-Bold",
+  700
+);
+
+@include font-face(
+  "SantanderMicroTextBd",
+  "/assets/fonts/SantanderMicroText-Bd",
+  700
+);
+@include font-face(
+  "SantanderMicroTextLt",
+  "/assets/fonts/SantanderMicroText-Lt",
+  300
+);
+@include font-face(
+  "SantanderMicroText",
+  "/assets/fonts/SantanderMicroText",
+  400
+);
+
+$custom-theme: mat.define-theme(
+  (
+    color: (
+      primary: mat.$red-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($custom-theme);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  --color-primary: #e71313;
+  --color-accent: #990030;
+  --color-white: #fff;
+  font-family: "SantanderMicroText", sans-serif;
+  background-color: #f5f5f5;
+}
