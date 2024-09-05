@@ -20,6 +20,7 @@ services:
       yarn install
       yarn global add @angular/cli 
       ng build --configuration production
+    startCommand: cd apps/fe-challenge-test && npx serve -s dist/fe-challenge-test
     envVars:
       - key: NODE_ENV
         value: production
