@@ -15,11 +15,7 @@ services:
   - type: web
     name: frontend
     env: static
-    buildCommand: |
-      cd apps/fe-challenge-test
-      yarn install
-      yarn global add @angular/cli 
-      ng build --configuration production
+    buildCommand: cd apps/fe-challenge-test && yarn install && yarn global add @angular/cli && ng build --configuration production
     staticPublishPath: ./apps/fe-challenge-test/dist/fe-challenge-test
     envVars:
       - key: NODE_ENV
