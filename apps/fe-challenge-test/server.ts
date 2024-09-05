@@ -17,13 +17,14 @@ export function app(): express.Express {
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
-  server.get('**', express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: 'index.html',
-  }));
+  server.get(
+    '**',
+    express.static(browserDistFolder, {
+      maxAge: '1y',
+      index: 'index.html',
+    })
+  );
 
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
@@ -37,7 +38,16 @@ export function app(): express.Express {
         publicPath: browserDistFolder,
         providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
       })
-      .then((html) => res.send(html))
+      .then((html) => {
+        // Inject the RENDER_EXTERNAL_HOSTNAME into the HTML
+        const renderExternalHostname =
+          process.env['RENDER_EXTERNAL_HOSTNAME'] || 'localhost:3000';
+        const modifiedHtml = html.replace(
+          '${RENDER_EXTERNAL_HOSTNAME}',
+          renderExternalHostname
+        );
+        res.send(modifiedHtml);
+      })
       .catch((err) => next(err));
   });
 

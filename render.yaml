@@ -20,5 +20,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: ROOT_API_URL
-        value: https://${RENDER_EXTERNAL_HOSTNAME}-backend.onrender.com
+      - key: RENDER_EXTERNAL_HOSTNAME
+        fromService:
+          type: web
+          name: backend
+          envVarKey: RENDER_EXTERNAL_HOSTNAME
