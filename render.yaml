@@ -8,9 +8,9 @@ services:
       - key: NODE_ENV
         value: production
       - key: DB_CONNECTION_URI
-        sync: true
+        sync: false
       - key: DB_NAME
-      - sync: true
+        sync: false
 
   - type: web
     name: frontend
@@ -28,4 +28,4 @@ services:
       - key: NODE_ENV
         value: production
       - key: ROOT_API_URL
-        sync: true
+        sync: false
